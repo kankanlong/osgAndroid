@@ -2,28 +2,32 @@ LOCAL_PATH:= $(call my-dir)
 
 include $(CLEAR_VARS)
 
+
+prebuilt_stdcxx_PATH := /home/hailong/Android/android-ndk-r15b/sources/cxx-stl/gnu-libstdc++/4.9
+prebuild_stdcxx_LIBDIR := $(prebuilt_stdcxx_PATH)/libs/armeabi
+
 # OSG SDK for Android
-OSG_SDK := /home/rgaitan/Projects/OSG/osg-trunk-static-armeabi-android-sdk
-OSG_SDK_LIB_PATH := $(OSG_SDK)/lib
-OSG_SDK_PLUGIN_PATH := $(OSG_SDK_LIB_PATH)/osgPlugins-3.3.3
+OSG_SDK := /home/hailong/OSG/TerrainGis340/dependence/OpenSceneGraph-3.0.1
+OSG_SDK_LIB_PATH := $(OSG_SDK)/lib_android/local/armeabi-v7a
+OSG_SDK_PLUGIN_PATH := $(OSG_SDK_LIB_PATH)
 #OSG_SDK_LIB_PATH := $(OSG_SDK)/obj/local/armeabi-v7a
 
 LOCAL_MODULE            := libjniosgconfiguration
 
-LOCAL_C_INCLUDES        := $(OSG_SDK)/include
+LOCAL_C_INCLUDES        := $(OSG_SDK)/include_android
 LOCAL_CFLAGS    		:= -Werror -fno-short-enums
 LOCAL_CPPFLAGS  		:= -DOSG_LIBRARY_STATIC 
-LOCAL_LDFLAGS   		:= -L$(OSG_SDK)/obj/local/armeabi -fno-short-enums
+LOCAL_LDFLAGS   		:= -L$(OSG_SDK)/lib_android/local/armeabi-v7a -fno-short-enums
 LOCAL_SRC_FILES 		:= JNIOSGConfiguration.cpp
 
-LOCAL_LDLIBS    		:= -llog -lGLESv1_CM -ldl
+
+LOCAL_LDLIBS    := -llog -lGLESv2 -ldl
 
 TARGET_LDLIBS := \
 $(OSG_SDK_PLUGIN_PATH)/libosgdb_osg.a \
 $(OSG_SDK_PLUGIN_PATH)/libosgdb_ive.a \
 $(OSG_SDK_PLUGIN_PATH)/libosgdb_rgb.a \
 $(OSG_SDK_PLUGIN_PATH)/libosgdb_openflight.a \
-$(OSG_SDK_PLUGIN_PATH)/libosgdb_serializers_osgpresentation.a \
 $(OSG_SDK_PLUGIN_PATH)/libosgdb_serializers_osgvolume.a \
 $(OSG_SDK_PLUGIN_PATH)/libosgdb_serializers_osgtext.a \
 $(OSG_SDK_PLUGIN_PATH)/libosgdb_serializers_osgterrain.a \
@@ -67,7 +71,7 @@ $(OSG_SDK_LIB_PATH)/libosgAnimation.a \
 $(OSG_SDK_LIB_PATH)/libosgUtil.a \
 $(OSG_SDK_LIB_PATH)/libosg.a \
 $(OSG_SDK_LIB_PATH)/libOpenThreads.a \
-$(OSG_SDK_LIB_PATH)/libgnustl_static.a 
+$(prebuild_stdcxx_LIBDIR)/libgnustl_static.a 
 
 
 include $(BUILD_SHARED_LIBRARY)
