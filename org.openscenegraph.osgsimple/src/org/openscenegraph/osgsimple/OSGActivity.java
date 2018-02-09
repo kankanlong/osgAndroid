@@ -40,9 +40,9 @@ public class OSGActivity extends Activity {
 	protected void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 		try {
-			Library.initLibrary("gles1");
+			Library.initLibrary("gles2");
 			mView = new Viewer(this);
-			mView.init(false, 16, 8, Viewer.GLES1_CONTEXT);
+			mView.init(false, 16, 8, Viewer.GLES2_CONTEXT);
 			File externalStorage = Environment.getExternalStorageDirectory();
 			String path = externalStorage + "/osgAndroid/cessna.osg";
 

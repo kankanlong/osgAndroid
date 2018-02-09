@@ -41,9 +41,9 @@ public class OSGJNIActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 		try {
-			Library.initLibrary("gles1");
+			Library.initLibrary("gles2");
 			mView = new Viewer(this);
-			mView.init(false, 16, 8, Viewer.GLES1_CONTEXT);
+			mView.init(false, 16, 8, Viewer.GLES2_CONTEXT);
 			File externalStorage = Environment.getExternalStorageDirectory();
 			String path = externalStorage + "/osgAndroid/axes.ive";
 			Node node = ReadFile.readNodeFile(path);

@@ -46,10 +46,10 @@ public class OSGOverlayCamera extends Activity {
 		super.onCreate(savedInstanceState);
 		// Hide the window title.
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		Library.initLibrary("gles1");
+		Library.initLibrary("gles2");
 		mPreview = new CameraPreview(this);
 		mOverlaySurfaceView = new Viewer(this);
-		mOverlaySurfaceView.init(true, 16, 8, Viewer.GLES1_CONTEXT);
+		mOverlaySurfaceView.init(true, 16, 8, Viewer.GLES2_CONTEXT);
 		mOverlaySurfaceView.getCamera().setClearColor(0,0,0,0);
 		File externalStorage = Environment.getExternalStorageDirectory();
 		String path = externalStorage + "/osgAndroid/axes.ive";

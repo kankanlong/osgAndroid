@@ -1,5 +1,8 @@
 LOCAL_PATH := $(call my-dir)
  
+prebuilt_stdcxx_PATH := /home/hailong/Android/android-ndk-r15b/sources/cxx-stl/gnu-libstdc++/4.9
+prebuild_stdcxx_LIBDIR := $(prebuilt_stdcxx_PATH)/libs/armeabi-v7a
+ 
 OSG_SRC_FILES 		:= \
 JNIosgViewer.cpp \
 JNIosg.cpp \
@@ -57,7 +60,8 @@ OSG_LDLIBS := \
 -losgAnimation \
 -losgUtil \
 -losg \
--lOpenThreads 
+-lOpenThreads \
+-L$(prebuild_stdcxx_LIBDIR) -lgnustl_static -lsupc++
 
 
 ### GLES1 build

@@ -4,7 +4,7 @@ include $(CLEAR_VARS)
 
 
 prebuilt_stdcxx_PATH := /home/hailong/Android/android-ndk-r15b/sources/cxx-stl/gnu-libstdc++/4.9
-prebuild_stdcxx_LIBDIR := $(prebuilt_stdcxx_PATH)/libs/armeabi
+prebuild_stdcxx_LIBDIR := $(prebuilt_stdcxx_PATH)/libs/armeabi-v7a
 
 # OSG SDK for Android
 OSG_SDK := /home/hailong/OSG/TerrainGis340/dependence/OpenSceneGraph-3.0.1
