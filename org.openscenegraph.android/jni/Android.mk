@@ -65,43 +65,43 @@ OSG_LDLIBS := \
 
 
 ### GLES1 build
-#include $(CLEAR_VARS)
-#OSG_SDK := "/home/hailong/OSG/TerrainGis340/dependence/OpenSceneGraph-3.0.1" #/Users/rgaitan/Projects/OSG/osg-trunk-android-static-gles1-sdk
-#OSG_SDK_LIB_PATH := $(OSG_SDK)/lib_android/local/armeabi-v7a
-#OSG_SDK_PLUGIN_PATH := $(OSG_SDK_LIB_PATH)
-#ifneq (,$(wildcard $(OSG_SDK)/include_android/osg/Config))
-
- #   APP_MODULES       := jniosg-gles1
- #   LOCAL_CFLAGS      := -Werror -fno-short-enums -fPIC
- #   LOCAL_CPPFLAGS    := -DOSG_LIBRARY_STATIC 
- #   LOCAL_SRC_FILES   := $(OSG_SRC_FILES)
- #   LOCAL_MODULE      := libjniosg-gles1
- #   LOCAL_LDLIBS      := -llog -lGLESv1_CM -ldl 
- #   LOCAL_C_INCLUDES  := $(OSG_SDK)/include
- #   TARGET_LDLIBS     := $(OSG_LDLIBS)
- #   LOCAL_LDFLAGS := -L$(OSG_SDK_LIB_PATH) -L$(OSG_SDK_PLUGIN_PATH) 
- #   include $(BUILD_SHARED_LIBRARY)
-#else
- #   $(warning Unable to find osg/Config file in the headers, not building libjniosg-gles1 module)
-#endif
-
-### GLES2 build
 include $(CLEAR_VARS)
 OSG_SDK := /home/hailong/OSG/TerrainGis340/dependence/OpenSceneGraph-3.0.1
-OSG_SDK_LIB_PATH := $(OSG_SDK)/lib_android/local/armeabi-v7a
+OSG_SDK_LIB_PATH := $(OSG_SDK)/lib_android_gles1/local/armeabi-v7a
 OSG_SDK_PLUGIN_PATH := $(OSG_SDK_LIB_PATH)
-ifneq ( ,$(wildcard $(OSG_SDK)/include_android/osg/Config))
-    APP_MODULES       += jniosg-gles2
+ifneq (,$(wildcard $(OSG_SDK)/include_android/osg/Config))
+
+    APP_MODULES       := jniosg-gles1
     LOCAL_CFLAGS      := -Werror -fno-short-enums -fPIC
     LOCAL_CPPFLAGS    := -DOSG_LIBRARY_STATIC 
     LOCAL_SRC_FILES   := $(OSG_SRC_FILES)
-    LOCAL_MODULE      := libjniosg-gles2
-    LOCAL_LDLIBS      := -llog -lGLESv2 -ldl -lz 
+    LOCAL_MODULE      := libjniosg-gles1
+    LOCAL_LDLIBS      := -llog -lGLESv1_CM -ldl -lz 
     LOCAL_C_INCLUDES  := $(OSG_SDK)/include_android
     TARGET_LDLIBS     := $(OSG_LDLIBS)
-    LOCAL_LDFLAGS     := -L$(OSG_SDK_LIB_PATH) -L$(OSG_SDK_PLUGIN_PATH) 
+    LOCAL_LDFLAGS := -L$(OSG_SDK_LIB_PATH) -L$(OSG_SDK_PLUGIN_PATH) 
     include $(BUILD_SHARED_LIBRARY)
 else
-    $(warning Unable to find osg/Config file in the headers, not building libjniosg-gles2 module)
+    $(warning Unable to find osg/Config file in the headers, not building libjniosg-gles1 module)
 endif
+
+### GLES2 build
+#include $(CLEAR_VARS)
+#OSG_SDK := /home/hailong/OSG/TerrainGis340/dependence/OpenSceneGraph-3.0.1
+#OSG_SDK_LIB_PATH := $(OSG_SDK)/lib_android_gles2/local/armeabi-v7a
+#OSG_SDK_PLUGIN_PATH := $(OSG_SDK_LIB_PATH)
+#ifneq ( ,$(wildcard $(OSG_SDK)/include_android/osg/Config))
+#    APP_MODULES       += jniosg-gles2
+#    LOCAL_CFLAGS      := -Werror -fno-short-enums -fPIC
+#    LOCAL_CPPFLAGS    := -DOSG_LIBRARY_STATIC 
+#    LOCAL_SRC_FILES   := $(OSG_SRC_FILES)
+#    LOCAL_MODULE      := libjniosg-gles2
+#    LOCAL_LDLIBS      := -llog -lGLESv2 -ldl -lz 
+#    LOCAL_C_INCLUDES  := $(OSG_SDK)/include_android
+#    TARGET_LDLIBS     := $(OSG_LDLIBS)
+#    LOCAL_LDFLAGS     := -L$(OSG_SDK_LIB_PATH) -L$(OSG_SDK_PLUGIN_PATH) 
+#    include $(BUILD_SHARED_LIBRARY)
+#else
+#    $(warning Unable to find osg/Config file in the headers, not building libjniosg-gles2 module)
+#endif
 

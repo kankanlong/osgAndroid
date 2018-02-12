@@ -22,6 +22,7 @@ import java.io.File;
 
 import org.openscenegraph.osg.Library;
 import org.openscenegraph.osg.db.ReadFile;
+import org.openscenegraph.osg.util.GLES2ShaderConverter;
 import org.openscenegraph.osg.viewer.Viewer;
 
 import android.app.Activity;
@@ -40,13 +41,14 @@ public class OSGActivity extends Activity {
 	protected void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 		try {
-			Library.initLibrary("gles2");
+			Library.initLibrary("gles1");
 			mView = new Viewer(this);
-			mView.init(false, 16, 8, Viewer.GLES2_CONTEXT);
+			mView.init(false, 16, 8, Viewer.GLES1_CONTEXT);
 			File externalStorage = Environment.getExternalStorageDirectory();
-			String path = externalStorage + "/osgAndroid/cessna.osg";
+			String path = externalStorage + "/osgAndroid/0307-jz.max.ive";
 
-			mView.setSceneData(/*GLES2ShaderConverter.apply(mView, */ReadFile.readNodeFile(path)/*)*/);
+			mView.setSceneData(ReadFile.readNodeFile(path));
+			//mView.setSceneData(GLES2ShaderConverter.apply(mView, ReadFile.readNodeFile(path)));
 			//mView.setSceneData(new Group());
 			mView.setDefaultSettings();
 			setContentView(mView);

@@ -41,18 +41,21 @@ public class OSGJNIActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 		try {
-			Library.initLibrary("gles2");
+			Library.initLibrary("gles1");
 			mView = new Viewer(this);
-			mView.init(false, 16, 8, Viewer.GLES2_CONTEXT);
+			mView.init(false, 16, 8, Viewer.GLES1_CONTEXT);
+
 			File externalStorage = Environment.getExternalStorageDirectory();
 			String path = externalStorage + "/osgAndroid/axes.ive";
 			Node node = ReadFile.readNodeFile(path);
+			//Node node  = ReadFile.readNodeFile("http://118.89.225.237:8010/osgb/test/GangLiang.ive");
 			MatrixTransform m = new MatrixTransform();
 			m.addChild(node);
 			mView.setSceneData(OSGConfiguration.configureScene(m));
 			mView.setDefaultSettings();
 			OSGConfiguration.configureViewer(mView);
 			setContentView(mView);
+			//mView.getCamera().setClearColor(1,0,0,0);
 		} catch (Exception e) {
 			Log.w("OSGActivity", e.getMessage());
 		}

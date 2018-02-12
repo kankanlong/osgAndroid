@@ -8,5 +8,5 @@ APP_PLATFORM 	:= android-8
 APP_STL 	:= gnustl_static
 APP_CPPFLAGS 	:= -fexceptions -frtti
 APP_ABI 	:= armeabi-v7a
-APP_MODULES     := jniosg-gles2
+APP_MODULES     := jniosg-gles1
 NDK_TOOLCHAIN_VERSION := 4.9
